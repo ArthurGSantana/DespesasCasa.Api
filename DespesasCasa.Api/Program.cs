@@ -1,6 +1,8 @@
+using DespesasCasa.IoC;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+DependencyContainer.RegisterServices(builder.Services, builder.Configuration.GetConnectionString("PostgresConnectionString"));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
