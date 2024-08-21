@@ -7,4 +7,6 @@ public class Expanse : Base
     public decimal Value { get; set; }
     public DateTime PaymentDate { get; set; }
     public string? Observation { get; set; }
+    public Guid? CollectionId { get; set; }
+    public Collection? Collection { get; set; }
 }

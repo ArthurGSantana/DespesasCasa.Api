@@ -1,4 +1,5 @@
 using DespesasCasa.Data.Context;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,15 +19,18 @@ public static class DependencyContainer
                 options.EnableDetailedErrors();
             }
         });
+
+        services.AddFluentValidationAutoValidation();
+        services.AddFluentValidationClientsideAdapters();
     }
 
     //Iniciar o banco de dados com as migrations ao iniciar a aplicação
-    // public static void InitializeDatabase(IServiceProvider serviceProvider)
-    // {
-    //     using (var serviceScope = serviceProvider.CreateScope())
-    //     {
-    //         var context = serviceScope.ServiceProvider.GetService<PostgresDbContext>();
-    //         context?.Database.Migrate();
-    //     }
-    // }
+    public static void InitializeDatabase(IServiceProvider serviceProvider)
+    {
+        using (var serviceScope = serviceProvider.CreateScope())
+        {
+            var context = serviceScope.ServiceProvider.GetService<PostgresDbContext>();
+            context?.Database.Migrate();
+        }
+    }
 }

@@ -18,6 +18,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+DependencyContainer.InitializeDatabase(app.Services);
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
