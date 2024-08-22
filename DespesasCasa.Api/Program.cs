@@ -26,10 +26,13 @@ builder.Services.AddCors(options =>
                 allowedOrigins.Add("http://localhost:4200");
             }
 
-            cors.WithOrigins(allowedOrigins.ToArray())
-                .SetIsOriginAllowedToAllowWildcardSubdomains()
-                .AllowAnyHeader()
-                .AllowAnyMethod();
+            if (allowedOrigins.Any())
+            {
+                cors.WithOrigins(allowedOrigins.ToArray())
+                    .SetIsOriginAllowedToAllowWildcardSubdomains()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            }
         }
     );
 });
