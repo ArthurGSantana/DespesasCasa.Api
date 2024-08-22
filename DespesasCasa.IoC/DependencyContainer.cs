@@ -1,4 +1,6 @@
 using DespesasCasa.Data.Context;
+using DespesasCasa.Data.Repository;
+using DespesasCasa.Domain.Interface.Repository;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +21,8 @@ public static class DependencyContainer
                 options.EnableDetailedErrors();
             }
         });
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         services.AddFluentValidationAutoValidation();
         services.AddFluentValidationClientsideAdapters();
