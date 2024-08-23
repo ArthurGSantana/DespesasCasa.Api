@@ -12,7 +12,4 @@
   <ItemGroup>
     <ProjectReference Include="..\DespesasCasa.IoC\DespesasCasa.IoC.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
 </Project>

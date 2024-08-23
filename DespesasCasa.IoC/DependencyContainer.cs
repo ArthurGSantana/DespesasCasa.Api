@@ -1,9 +1,12 @@
+using AutoMapper;
 using DespesasCasa.Data.Context;
 using DespesasCasa.Data.Repository;
 using DespesasCasa.Domain.Interface.Repository;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using AutoMapper.Extensions.ExpressionMapping;
+using DespesasCasa.Domain.Mapping;
 
 namespace DespesasCasa.IoC;
 
@@ -26,6 +29,16 @@ public static class DependencyContainer
 
         services.AddFluentValidationAutoValidation();
         services.AddFluentValidationClientsideAdapters();
+
+        // Automapper
+        var mapperConfig = new MapperConfiguration(mc =>
+        {
+            mc.AddExpressionMapping();
+            mc.AddProfile(new MappingProfile());
+        });
+
+        IMapper mapper = mapperConfig.CreateMapper();
+        services.AddSingleton(mapper);
     }
 
     //Iniciar o banco de dados com as migrations ao iniciar a aplicação
