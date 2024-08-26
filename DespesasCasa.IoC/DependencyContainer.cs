@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using AutoMapper.Extensions.ExpressionMapping;
 using DespesasCasa.Domain.Mapping;
+using DespesasCasa.Domain.Interface.Service;
+using DespesasCasa.Application.Service;
 
 namespace DespesasCasa.IoC;
 
@@ -26,6 +28,9 @@ public static class DependencyContainer
         });
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        //Services
+        services.AddScoped<IUserService, UserService>();
 
         services.AddFluentValidationAutoValidation();
         services.AddFluentValidationClientsideAdapters();
