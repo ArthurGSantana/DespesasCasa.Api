@@ -1,6 +1,6 @@
 namespace DespesasCasa.Domain.Model.Dto;
 
-public class ExpanseDto
+public class ExpenseDto
 {
     public Guid? Id { get; set; }
     public string? Title { get; set; }

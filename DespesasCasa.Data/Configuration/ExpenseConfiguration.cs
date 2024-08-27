@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DespesasCasa.Data.Configuration;
 
-public class ExpanseConfiguration : IEntityTypeConfiguration<Expanse>
+public class ExpenseConfiguration : IEntityTypeConfiguration<Expense>
 {
-    public void Configure(EntityTypeBuilder<Expanse> builder)
+    public void Configure(EntityTypeBuilder<Expense> builder)
     {
-        builder.ToTable("Expanse");
+        builder.ToTable("Expense");
 
         builder.HasKey(x => x.Id);
 

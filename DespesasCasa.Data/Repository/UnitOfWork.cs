@@ -9,11 +9,11 @@ public class UnitOfWork(PostgresDbContext context) : IUnitOfWork
 {
     private IBaseRepository<User>? _userRepository;
     private IBaseRepository<Collection>? _collectionRepository;
-    private IBaseRepository<Expanse>? _expenseRepository;
+    private IBaseRepository<Expense>? _expenseRepository;
 
     public IBaseRepository<User> UserRepository => _userRepository ??= new BaseRepository<User>(context);
     public IBaseRepository<Collection> CollectionRepository => _collectionRepository ??= new BaseRepository<Collection>(context);
-    public IBaseRepository<Expanse> ExpenseRepository => _expenseRepository ??= new BaseRepository<Expanse>(context);
+    public IBaseRepository<Expense> ExpenseRepository => _expenseRepository ??= new BaseRepository<Expense>(context);
 
     public async Task CommitAsync()
     {

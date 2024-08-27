@@ -6,7 +6,7 @@ public interface IUnitOfWork
 {
     IBaseRepository<User> UserRepository { get; }
     IBaseRepository<Collection> CollectionRepository { get; }
-    IBaseRepository<Expanse> ExpenseRepository { get; }
+    IBaseRepository<Expense> ExpenseRepository { get; }
 
     Task CommitAsync();
 }

@@ -1,6 +1,6 @@
 namespace DespesasCasa.Domain.Entity;
 
-public class Expanse : Base
+public class Expense : Base
 {
     public string? Title { get; set; }
     public string? Description { get; set; }
