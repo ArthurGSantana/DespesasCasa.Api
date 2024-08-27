@@ -9,6 +9,7 @@ using AutoMapper.Extensions.ExpressionMapping;
 using DespesasCasa.Domain.Mapping;
 using DespesasCasa.Domain.Interface.Service;
 using DespesasCasa.Application.Service;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DespesasCasa.IoC;
 
@@ -36,6 +37,7 @@ public static class DependencyContainer
 
         services.AddFluentValidationAutoValidation();
         services.AddFluentValidationClientsideAdapters();
+        services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
 
         // Automapper
         var mapperConfig = new MapperConfiguration(mc =>
