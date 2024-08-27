@@ -11,5 +11,9 @@ public class MappingProfile : Profile
         CreateMap<User, UserDto>()
         .ForMember(dest => dest.Password, opt => opt.Ignore())
         .ReverseMap();
+
+        CreateMap<Collection, CollectionDto>().ReverseMap();
+
+        CreateMap<Expense, ExpenseDto>().ReverseMap();
     }
 }

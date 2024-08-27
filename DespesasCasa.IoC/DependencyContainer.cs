@@ -31,6 +31,8 @@ public static class DependencyContainer
 
         //Services
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<ICollectionService, CollectionService>();
+        services.AddScoped<IExpenseService, ExpenseService>();
 
         services.AddFluentValidationAutoValidation();
         services.AddFluentValidationClientsideAdapters();
