@@ -1,4 +1,5 @@
 using DespesasCasa.Domain.Enum;
+using DespesasCasa.Domain.Extensions;
 
 namespace DespesasCasa.Domain.Model.Response;
 
@@ -21,7 +22,7 @@ public class ErrorViewModel
         Errors = new List<Error> { error };
     }
 
-     public ErrorViewModel(string code, string? message = "")
+    public ErrorViewModel(string code, string? message = "")
     {
 
         this.Errors = new List<Error>()
@@ -35,8 +36,10 @@ public class ErrorViewModel
 
     }
 
-    public ErrorViewModel(IEnumerable<string> errors)
+    public ErrorViewModel(List<string> errors)
     {
-        this.Errors = errors.Select(e => new Error() { Code = System.Enum.GetName(ErrorCodeEnum.ValidationError)?.ToSnakeCase()?.ToLower() ?? "", Message = e });
+        this.Errors = errors
+                        .Select(e => new Error() { Code = System.Enum.GetName(ErrorCodeEnum.ValidationError)?.ToSnakeCase()?.ToLower() ?? "", Message = e })
+                        .ToList();
     }
 }
