@@ -1,5 +1,6 @@
 
 using System.Text.Json;
+using DespesasCasa.Domain.Model.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
