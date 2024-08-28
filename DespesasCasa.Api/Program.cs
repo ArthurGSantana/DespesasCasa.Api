@@ -1,4 +1,6 @@
+using System.Text.Json.Serialization;
 using DespesasCasa.Api.Environment;
+using DespesasCasa.Api.Filters;
 using DespesasCasa.IoC;
 
 const string allowedOriginsName = "_allowedOrigins";
@@ -7,7 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 DependencyContainer.RegisterServices(builder.Services, builder.Configuration.GetConnectionString("PostgresConnectionString"));
 
-builder.Services.AddControllers();
+//Add Controllers
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+    options.Filters.Add(typeof(ValidationFilter));
+}).AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
