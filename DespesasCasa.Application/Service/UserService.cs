@@ -1,6 +1,8 @@
 using AutoMapper;
 using DespesasCasa.Application.Security;
 using DespesasCasa.Domain.Entity;
+using DespesasCasa.Domain.Enum;
+using DespesasCasa.Domain.Exceptions;
 using DespesasCasa.Domain.Interface.Repository;
 using DespesasCasa.Domain.Interface.Service;
 using DespesasCasa.Domain.Model.Dto;
@@ -15,7 +17,7 @@ public class UserService(IUnitOfWork _unitOfWork, IMapper _mapper) : IUserServic
 
         if (user == null)
         {
-            throw new Exception("User not found");
+            throw new AppDomainException("User not found", ErrorCodeEnum.ObjectNotFound);
         }
 
         return _mapper.Map<UserDto>(user);
@@ -32,7 +34,7 @@ public class UserService(IUnitOfWork _unitOfWork, IMapper _mapper) : IUserServic
 
         if (existing)
         {
-            throw new Exception("User already exists");
+            throw new AppDomainException("User already exists", ErrorCodeEnum.ObjectAlreadyExists);
         }
 
         var newUser = _mapper.Map<User>(user);
@@ -50,7 +52,7 @@ public class UserService(IUnitOfWork _unitOfWork, IMapper _mapper) : IUserServic
 
         if (user is null)
         {
-            throw new Exception("User not found");
+            throw new AppDomainException("User not found", ErrorCodeEnum.ObjectNotFound);
         }
 
         _unitOfWork.UserRepository.Remove(user);

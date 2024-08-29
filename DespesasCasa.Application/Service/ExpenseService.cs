@@ -1,5 +1,7 @@
 using AutoMapper;
 using DespesasCasa.Domain.Entity;
+using DespesasCasa.Domain.Enum;
+using DespesasCasa.Domain.Exceptions;
 using DespesasCasa.Domain.Interface.Repository;
 using DespesasCasa.Domain.Interface.Service;
 using DespesasCasa.Domain.Model.Dto;
@@ -14,7 +16,7 @@ public class ExpenseService(IUnitOfWork _unitOfWork, IMapper _mapper) : IExpense
 
         if (expense == null)
         {
-            throw new Exception("Expense not found");
+            throw new AppDomainException("Expense not found", ErrorCodeEnum.ObjectNotFound);
         }
 
         return _mapper.Map<ExpenseDto>(expense);
@@ -31,7 +33,7 @@ public class ExpenseService(IUnitOfWork _unitOfWork, IMapper _mapper) : IExpense
 
         if (existing)
         {
-            throw new Exception("Expense already exists");
+            throw new AppDomainException("Expense already exists", ErrorCodeEnum.ObjectAlreadyExists);
         }
 
         var newExpense = _mapper.Map<Expense>(expense);
@@ -48,7 +50,7 @@ public class ExpenseService(IUnitOfWork _unitOfWork, IMapper _mapper) : IExpense
 
         if (!existing)
         {
-            throw new Exception("Expense not found");
+            throw new AppDomainException("Expense not found", ErrorCodeEnum.ObjectNotFound);
         }
 
         var updatedExpense = _mapper.Map<Expense>(expense);
@@ -65,7 +67,7 @@ public class ExpenseService(IUnitOfWork _unitOfWork, IMapper _mapper) : IExpense
 
         if (expense is null)
         {
-            throw new Exception("Expense not found");
+            throw new AppDomainException("Expense not found", ErrorCodeEnum.ObjectNotFound);
         }
 
         _unitOfWork.ExpenseRepository.Remove(expense);

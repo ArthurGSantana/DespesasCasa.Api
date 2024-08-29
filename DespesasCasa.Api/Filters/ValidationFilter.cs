@@ -4,15 +4,8 @@ using DespesasCasa.Domain.Model.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-public class ValidationFilter : IActionFilter
+public class ValidationFilter(ILogger<ValidationFilter> _logger) : IActionFilter
 {
-    private readonly ILogger<ValidationFilter> _logger;
-
-    public ValidationFilter(ILogger<ValidationFilter> logger)
-    {
-        _logger = logger;
-    }
-
     public void OnActionExecuting(ActionExecutingContext context)
     {
 

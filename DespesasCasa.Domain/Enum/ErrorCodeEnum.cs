@@ -4,6 +4,6 @@ public enum ErrorCodeEnum
 {
     InternalServerError,
     ValidationError,
-    InvalidEmailPassword,
-    UserAlreadyExists,
+    ObjectAlreadyExists,
+    ObjectNotFound,
 }

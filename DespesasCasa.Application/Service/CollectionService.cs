@@ -1,5 +1,7 @@
 using AutoMapper;
 using DespesasCasa.Domain.Entity;
+using DespesasCasa.Domain.Enum;
+using DespesasCasa.Domain.Exceptions;
 using DespesasCasa.Domain.Interface.Repository;
 using DespesasCasa.Domain.Interface.Service;
 using DespesasCasa.Domain.Model.Dto;
@@ -14,7 +16,7 @@ public class CollectionService(IUnitOfWork _unitOfWork, IMapper _mapper) : IColl
 
         if (collection == null)
         {
-            throw new Exception("Collection not found");
+            throw new AppDomainException("Collection not found", ErrorCodeEnum.ObjectNotFound);
         }
 
         return _mapper.Map<CollectionDto>(collection);
@@ -31,7 +33,7 @@ public class CollectionService(IUnitOfWork _unitOfWork, IMapper _mapper) : IColl
 
         if (existing)
         {
-            throw new Exception("Collection already exists");
+            throw new AppDomainException("Collection already exists", ErrorCodeEnum.ObjectAlreadyExists);
         }
 
         var newCollection = _mapper.Map<Collection>(collection);
@@ -48,7 +50,7 @@ public class CollectionService(IUnitOfWork _unitOfWork, IMapper _mapper) : IColl
 
         if (collection is null)
         {
-            throw new Exception("Collection not found");
+            throw new AppDomainException("Collection not found", ErrorCodeEnum.ObjectNotFound);
         }
 
         _unitOfWork.CollectionRepository.Remove(collection);
