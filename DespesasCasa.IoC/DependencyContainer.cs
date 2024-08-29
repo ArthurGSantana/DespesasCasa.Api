@@ -10,6 +10,8 @@ using DespesasCasa.Domain.Mapping;
 using DespesasCasa.Domain.Interface.Service;
 using DespesasCasa.Application.Service;
 using Microsoft.AspNetCore.Mvc;
+using FluentValidation;
+using DespesasCasa.Domain.Validators;
 
 namespace DespesasCasa.IoC;
 
@@ -35,8 +37,10 @@ public static class DependencyContainer
         services.AddScoped<ICollectionService, CollectionService>();
         services.AddScoped<IExpenseService, ExpenseService>();
 
+        //FluentValidation
         services.AddFluentValidationAutoValidation();
-        services.AddFluentValidationClientsideAdapters();
+        // services.AddFluentValidationClientsideAdapters();
+        services.AddValidatorsFromAssemblyContaining<UserDtoValidator>();
         services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
 
         // Automapper
