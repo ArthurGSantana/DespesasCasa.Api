@@ -1,11 +1,14 @@
 using System.Text.Json.Serialization;
 using DespesasCasa.Api.Environment;
 using DespesasCasa.Api.Filters;
+using DespesasCasa.Domain.Config;
 using DespesasCasa.IoC;
 
 const string allowedOriginsName = "_allowedOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
+
+ConfigurationManager configuration = builder.Configuration;
 
 DependencyContainer.RegisterServices(builder.Services, builder.Configuration.GetConnectionString("PostgresConnectionString"));
 
@@ -20,6 +23,8 @@ builder.Services.AddControllers(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.Configure<ApplicationConfig>(configuration);
 
 // CORS Setup
 builder.Services.AddCors(options =>
