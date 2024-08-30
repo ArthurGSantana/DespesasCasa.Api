@@ -6,4 +6,6 @@ public enum ErrorCodeEnum
     ValidationError,
     ObjectAlreadyExists,
     ObjectNotFound,
+    InvalidEmailPassword,
+    InvalidJWTConfig
 }
