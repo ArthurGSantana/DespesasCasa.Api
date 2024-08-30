@@ -33,6 +33,7 @@ public static class DependencyContainer
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         //Services
+        services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ICollectionService, CollectionService>();
         services.AddScoped<IExpenseService, ExpenseService>();
@@ -40,7 +41,7 @@ public static class DependencyContainer
         //FluentValidation
         services.AddFluentValidationAutoValidation();
         // services.AddFluentValidationClientsideAdapters();
-        services.AddValidatorsFromAssemblyContaining<UserDtoValidator>();
+        services.AddValidatorsFromAssemblyContaining<AuthDtoValidator>();
         services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
 
         // Automapper
