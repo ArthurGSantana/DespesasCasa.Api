@@ -1,6 +1,7 @@
 using DespesasCasa.Domain.Interface.Service;
 using DespesasCasa.Domain.Model;
 using DespesasCasa.Domain.Model.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DespesasCasa.Api.Controllers;
@@ -17,6 +18,7 @@ public class UserController(IUserService _userService) : ControllerBase
     /// <response code="200">Success</response>
     /// <response code="400">Bad Request</response>
     /// <response code="500">Internal Server Error</response>
+    [Authorize]
     [HttpGet("{userId}")]
     public async Task<IActionResult> GetAsync(Guid userId)
     {
@@ -31,6 +33,7 @@ public class UserController(IUserService _userService) : ControllerBase
     /// <response code="200">Success</response>
     /// <response code="400">Bad Request</response>
     /// <response code="500">Internal Server Error</response>
+    [Authorize]
     [HttpGet]
     public async Task<IActionResult> GetAllAsync()
     {
@@ -61,6 +64,7 @@ public class UserController(IUserService _userService) : ControllerBase
     /// <response code="200">Success</response>
     /// <response code="400">Bad Request</response>
     /// <response code="500">Internal Server Error</response>
+    [Authorize]
     [HttpDelete("{userId}")]
     public async Task<IActionResult> DeleteAsync(Guid userId)
     {

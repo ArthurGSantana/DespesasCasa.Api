@@ -2,12 +2,14 @@
 using DespesasCasa.Domain.Interface.Service;
 using DespesasCasa.Domain.Model;
 using DespesasCasa.Domain.Model.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DespesasCasa.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class ExpenseController(IExpenseService _expenseService) : ControllerBase
 {
     /// <summary>
